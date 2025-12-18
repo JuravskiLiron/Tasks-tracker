@@ -1,0 +1,60 @@
+@page "{id:int}"
+@model Tasks_tracker.Pages.Tasks.Edit
+@{
+    ViewData["Title"] = "End task";
+}
+
+<h2>End task</h2>
+<form method="post" class="row g-3">
+    <input type="hidden" asp-for="Item.Id"/>
+    <div class="col-12">
+        <label class="form-label">Title</label>
+        <input asp-for="Item.Title" class="form-control"/>
+        <span asp-validation-for="Item.Title" class="text-danger"></span>
+    </div>
+    <div class="col-12">
+        <label class="form-label">Description</label>
+        <textarea asp-for="Item.Description" class="form-control" rows="3" ></textarea>
+    </div>
+    
+    <div class="col-md-4">
+        <label class="form-label">Due at</label>
+        <input asp-for="Item.DueAt" type="datetime-local" class="form-control"/>
+    </div>
+    
+    <div class="col-md-4"></div>
+    <label class="form-label">Estimate (min)</label>
+    <input asp-for="Item.EstimatedMinutes" type="number" class="form-control">
+    
+    <div class="col-md-4">
+        <label class="form-label">Spent (min)</label>
+        <input asp-for="Item.SpentMinutes"type="number" class="form-control"/>
+    </div>
+    
+    <div class="col-md-4">
+        <label class="form-label">Priority (0..2)</label>
+        <input asp-for="Item.Priority" type="number"class="form-control">
+    </div>
+    <div class="col-md-4 form-check mt-4"></div>
+    <input class="form-check-input"asp-for="Item.IsCompleted"/>
+    <label class="form-check-label">Completed</label>
+    
+    <div class="col-12">
+        <button class="btn btn-primary">Save</button>
+        <a asp-page="Index" class="btn btn-outline-secondary">Back</a>
+    </div>
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
