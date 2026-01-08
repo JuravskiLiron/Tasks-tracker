@@ -1,10 +1,12 @@
 using Microsoft.EntityFrameworkCore;
 using Tasks_tracker.Data;
-
+using Tasks_tracker.Pages.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddSingleton<Tasks_tracker.Pages.Services.ITelegramNotifier,
+    Tasks_tracker.Pages.Services.DummyTelegramNotifier>();
 builder.Services.AddDbContext<AppDbContext>(opt =>
 opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 

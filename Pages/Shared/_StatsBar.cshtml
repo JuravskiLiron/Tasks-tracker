@@ -1,0 +1,44 @@
+@using Tasks_tracker.Data
+@using Microsoft.EntityFrameworkCore
+@inject AppDbContext Db
+
+@{
+    var today = DateTime.UtcNow.Date;
+    var doneToday = Db.Tasks.Count(t => t.IsCompleted && t.CompletedAt >= today);
+    var totalToday = Db.Tasks.Count(t => t.CreatedAt >= today);
+    var goal = 5;
+    var pct = goal == 0 ? 0 : Math.Min(100, (int)Math.Round(doneToday*100.0/goal));
+}
+
+<div class="mb-4">
+<div class="d-flex justify-content-between align-items-end">
+    <div>
+        <strong>Today:</strong> done @doneToday / @goal
+        <span class="text-muted ms-2">created @totalToday</span>
+    </div>
+    <small class="text-muted">Productivity</small>
+    
+</div>
+    
+<div class="progress" style="height: 14px;">
+    <div class="progress-bar" role="progressbar" style="width: @pct%"></div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
